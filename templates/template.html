@@ -12,22 +12,20 @@
             <div class="sidebar-header">
                 <h1 class="app-title">{{ config.app.title }}</h1>
             </div>
-            <div class="sidebar-content">
-                <div class="sidebar-section">
-                    <h3>{{ config.ui.sidebar.files_title }}</h3>
-                    <div class="file-browser">
-                        {{ file_browser | safe }}
-                    </div>
+            <div class="files-section">
+                <h3 class="section-title">{{ config.ui.sidebar.files_title }}</h3>
+                <div class="file-browser">
+                    {{ file_browser | safe }}
                 </div>
-                {% if toc %}
-                <div class="sidebar-section">
-                    <h3>{{ config.ui.sidebar.toc_title }}</h3>
-                    <div class="toc">
-                        {{ toc | safe }}
-                    </div>
-                </div>
-                {% endif %}
             </div>
+            {% if toc %}
+            <div class="toc-section">
+                <h3 class="section-title">{{ config.ui.sidebar.toc_title }}</h3>
+                <div class="toc">
+                    {{ toc | safe }}
+                </div>
+            </div>
+            {% endif %}
         </div>
         <div class="content">
             {{ content | safe }}
