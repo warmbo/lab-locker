@@ -21,7 +21,7 @@
     --radius: 0.5rem;
     
     /* Configurable values */
-    --sidebar-width: 250px;
+    --sidebar-width: 300px;  /* Updated minimum width */
     --base-font-size: 14px;
     --sidebar-font-size: 0.875rem;
     --content-padding: 3rem;
@@ -54,17 +54,69 @@ body {
 
 .sidebar {
     flex: 0 0 var(--sidebar-width);
+    min-width: 300px;  /* Ensure minimum width */
     background-color: hsl(var(--muted));
     border-right: 1px solid hsl(var(--border));
-    padding: 2rem 1.5rem;
+    padding: 0;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    overflow-y: auto;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+}
+
+.sidebar-header {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    border-bottom: 1px solid hsl(var(--border));
+    background-color: hsl(var(--card));
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: hsl(var(--primary));
+    margin: 0;
+    text-align: center;
+    letter-spacing: -0.025em;
+}
+
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.sidebar-section {
+    border-bottom: 1px solid hsl(var(--border));
+    padding: 1.5rem;
+}
+
+.sidebar-section:first-child {
+    flex: 1;
+    min-height: 0;
+}
+
+.sidebar-section:last-child {
+    border-bottom: none;
+    padding-bottom: 1.5rem;
+    flex-shrink: 0;
+}
+
+.sidebar-section h3 {
+    margin: 0 0 1rem 0;
+    font-size: var(--sidebar-font-size);
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .file-browser {
@@ -178,9 +230,9 @@ body {
 .content {
     flex: 1;
     min-width: 0;
-    margin-left: var(--sidebar-width);
+    margin-left: 300px;  /* Use fixed value to match minimum sidebar width */
     padding: var(--content-padding);
-    max-width: 1200px;
+    max-width: calc(100vw - 300px);  /* Prevent overflow */
 }
 
 .content > h1:first-child {
@@ -301,25 +353,6 @@ blockquote {
     font-weight: 500;
 }
 
-.sidebar-section {
-    border-bottom: 1px solid hsl(var(--border));
-    padding-bottom: 1rem;
-}
-
-.sidebar-section:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.sidebar-section h3 {
-    margin: 0 0 1rem 0;
-    font-size: var(--sidebar-font-size);
-    font-weight: 600;
-    color: hsl(var(--foreground));
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
 .toc {
     background-color: transparent;
     border: none;
@@ -394,6 +427,14 @@ blockquote {
     
     th, td {
         padding: 0.5rem;
+    }
+    
+    .app-title {
+        font-size: 1.25rem;
+    }
+    
+    .sidebar-header {
+        padding: 1.5rem 1rem 1rem 1rem;
     }
 }
 
