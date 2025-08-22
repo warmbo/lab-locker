@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3>{{ config.ui.sidebar.files_title }}</h3>
+                <div class="file-browser">
+                    {{ file_browser | safe }}
+                </div>
+            </div>
+            {% if toc %}
+            <div class="sidebar-section">
+                <h3>{{ config.ui.sidebar.toc_title }}</h3>
+                <div class="toc">
+                    {{ toc | safe }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="content">
+            {{ content | safe }}
+        </div>
+    </div>
+    
+    <script>
+        // Toggle folder expansion
+        function toggleFolder(element) {
+            const folder = element.closest('.folder');
+            folder.classList.toggle('collapsed');
+        }
+        
+        // Highlight current file and create anchor IDs for headings
+        document.addEventListener('DOMContentLoaded', function() {
+            // Highlight current file and expand its parent folders
+            const currentFile = "{{ current_file }}";
+            const fileLinks = document.querySelectorAll('.file-browser .file a');
+            
+            fileLinks.forEach(link => {
+                const href = link.getAttribute('href').substring(1); // Remove leading /
+                if (href === currentFile) {
+                    link.classList.add('current');
+                    
+                    // Expand all parent folders for the current file
+                    let parent = link.closest('.folder-contents');
+                    while (parent) {
+                        const folder = parent.closest('.folder');
+                        if (folder) {
+                            folder.classList.remove('collapsed');
+                        }
+                        parent = folder ? folder.parentElement.closest('.folder-contents') : null;
+                    }
+                }
+            });
+            
+            // Create anchor IDs for headings if they don't exist
+            const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            headings.forEach(heading => {
+                if (!heading.id) {
+                    const text = heading.textContent || heading.innerText;
+                    const id = text.toLowerCase()
+                        .replace(/[^a-zA-Z0-9\s-]/g, '')
+                        .replace(/[-\s]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+                    heading.id = id;
+                }
+            });
+            
+            // Highlight active TOC link based on scroll position
+            const tocLinks = document.querySelectorAll('.toc a');
+            const headingsWithIds = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).filter(h => h.id);
+            
+            function updateActiveTocLink() {
+                let current = '';
+                
+                headingsWithIds.forEach(heading => {
+                    const rect = heading.getBoundingClientRect();
+                    if (rect.top <= 100) {
+                        current = heading.id;
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveTocLink);
+            updateActiveTocLink(); // Initial call
+        });
+    </script>
+</body>
+</html>

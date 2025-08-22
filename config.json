@@ -1,0 +1,35 @@
+{
+  "app": {
+    "title": "Documentation",
+    "default_file": "homelab.md",
+    "port": 5000,
+    "host": "0.0.0.0"
+  },
+  "ui": {
+    "sidebar": {
+      "width": "250px",
+      "files_title": "Files",
+      "toc_title": "Contents"
+    },
+    "fonts": {
+      "base_size": "14px",
+      "sidebar_size": "0.875rem",
+      "heading_scale": {
+        "h1": "2rem",
+        "h2": "1.5rem",
+        "h3": "1.25rem",
+        "h4": "1.125rem",
+        "h5": "1rem",
+        "h6": "0.875rem"
+      }
+    },
+    "spacing": {
+      "content_padding": "3rem",
+      "toc_indent": "0.5rem",
+      "folder_indent": "2px"
+    },
+    "scrollbar": {
+      "width": "14px"
+    }
+  }
+}
