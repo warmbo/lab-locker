@@ -1,4 +1,4 @@
-# 🏠 Lab Locker: Homelab Documentation Toolkit
+# ![Lab Locker Logo](static/logo.png) Lab Locker: Homelab Documentation Toolkit
 
 ## 🌟 Overview
 
