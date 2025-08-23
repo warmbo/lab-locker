@@ -10,7 +10,12 @@
     <div class="container">
         <div class="sidebar">
             <div class="sidebar-header">
-                <h1 class="app-title">{{ config.app.title }}</h1>
+                <h1 class="app-title">
+                    {% if config.app.logo %}
+                    <img src="{{ url_for('static', filename=config.app.logo) }}" alt="Logo" class="app-logo">
+                    {% endif %}
+                    {{ config.app.title }}
+                </h1>
             </div>
             <div class="files-section">
                 <h3 class="section-title">{{ config.ui.sidebar.files_title }}</h3>
@@ -39,8 +44,32 @@
             folder.classList.toggle('collapsed');
         }
         
+        // Handle files content scrolling and fade effects
+        function updateFilesScrollState() {
+            const filesContent = document.querySelector('.files-content');
+            if (filesContent) {
+                const hasScroll = filesContent.scrollHeight > filesContent.clientHeight;
+                const isScrolled = filesContent.scrollTop > 5;
+                
+                // Add class if content is scrollable and user has scrolled
+                filesContent.classList.toggle('has-scroll', hasScroll && isScrolled);
+            }
+        }
+        
         // Highlight current file and create anchor IDs for headings
         document.addEventListener('DOMContentLoaded', function() {
+            const filesContent = document.querySelector('.files-content');
+            if (filesContent) {
+                // Initial check
+                updateFilesScrollState();
+                
+                // Add scroll listener
+                filesContent.addEventListener('scroll', updateFilesScrollState);
+                
+                // Check again after content loads
+                setTimeout(updateFilesScrollState, 100);
+            }
+            
             // Highlight current file and expand its parent folders
             const currentFile = "{{ current_file }}";
             const fileLinks = document.querySelectorAll('.file-browser .file a');

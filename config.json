@@ -4,7 +4,8 @@
     "default_file": "homelab.md",
     "port": 5000,
     "host": "0.0.0.0",
-    "docs_folder": "docs"
+    "docs_folder": "docs",
+    "logo": "logo.png"
   },
   "ui": {
     "sidebar": {
