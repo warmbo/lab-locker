@@ -80,7 +80,6 @@ lab-locker/
 ## 🗺️ Roadmap & Future Plans
 
 ### Planned Features
-- [ ] Advanced backend document management system
 - [ ] Custom field configurations
 - [ ] Dropdown menu-based document creation
 - [ ] User authentication
@@ -89,22 +88,6 @@ lab-locker/
 - [ ] Collaborative editing
 - [ ] Version control integration
 
-### Proposed Enhancements
-1. **Dynamic Form Builder**
-   - Create custom documentation templates
-   - Drag-and-drop field creation
-   - Predefined homelab-specific templates
-
-2. **Intelligent Suggestions**
-   - Autocomplete for common homelab terms
-   - Validation for network configurations
-   - Best practice recommendations
-
-3. **Integration Capabilities**
-   - Direct integration with monitoring tools
-   - Automatic inventory discovery
-   - API for external system updates
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please:
@@ -112,11 +95,6 @@ Contributions are welcome! Please:
 - Create a feature branch
 - Submit a pull request
 
-### Ways to Contribute
-- Bug fixes
-- Feature implementations
-- Documentation improvements
-- Design enhancements
 
 ## 📋 Requirements
 
@@ -124,20 +102,6 @@ Contributions are welcome! Please:
 - Flask
 - Markdown
 - Pygments
-
-## 📄 License
-
-[Specify your license, e.g., MIT License]
-
-## 🐛 Reporting Issues
-
-Report issues on our [GitHub Issues Page](https://github.com/yourusername/lab-locker/issues)
-
-## 📧 Contact
-
-- **Project Maintainer**: `[Your Name]`
-- **Email**: `[Your Email]`
-- **Discord/Slack**: `[Community Link]`
 
 ---
 
