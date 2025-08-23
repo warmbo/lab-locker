@@ -105,6 +105,5 @@ Contributions are welcome! Please:
 
 ---
 
-**Happy Documenting! 📚🖥️**
 
-*Last Updated*: {{ current_date }}
+
