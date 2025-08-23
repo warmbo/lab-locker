@@ -1,4 +1,4 @@
-# ![Lab Locker Logo](static/logo.png) Lab Locker: Homelab Documentation Toolkit
+# <img src="static/logo.png" width="120px"> Lab Locker: Homelab Documentation Toolkit
 
 ## 🌟 Overview
 
